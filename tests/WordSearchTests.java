@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -262,5 +263,48 @@ public class WordSearchTests {
         resultList.add("UHURA");
 
         assertEquals(resultList, words);
+    }
+
+    @Test
+    public void readInFileAndReturnLettersArray(){
+        String directory = "D:\\Andrew\\Documents\\inputTestFile.txt";
+
+        InputParser parser = new InputParser();
+        parser.parse(directory);
+        char[][] letters = parser.letters;
+
+        char[][] lettersToCheck = new char[2][15];
+        lettersToCheck[0][0] = 'U';
+        lettersToCheck[0][1] = 'M';
+        lettersToCheck[0][2] = 'K';
+        lettersToCheck[0][3] = 'H';
+        lettersToCheck[0][4] = 'U';
+        lettersToCheck[0][5] = 'L';
+        lettersToCheck[0][6] = 'K';
+        lettersToCheck[0][7] = 'I';
+        lettersToCheck[0][8] = 'N';
+        lettersToCheck[0][9] = 'V';
+        lettersToCheck[0][10] = 'J';
+        lettersToCheck[0][11] = 'O';
+        lettersToCheck[0][12] = 'C';
+        lettersToCheck[0][13] = 'W';
+        lettersToCheck[0][14] = 'E';
+        lettersToCheck[1][0] = 'L';
+        lettersToCheck[1][1] = 'L';
+        lettersToCheck[1][2] = 'S';
+        lettersToCheck[1][3] = 'H';
+        lettersToCheck[1][4] = 'K';
+        lettersToCheck[1][5] = 'Z';
+        lettersToCheck[1][6] = 'Z';
+        lettersToCheck[1][7] = 'W';
+        lettersToCheck[1][8] = 'Z';
+        lettersToCheck[1][9] = 'C';
+        lettersToCheck[1][10] = 'G';
+        lettersToCheck[1][11] = 'J';
+        lettersToCheck[1][12] = 'U';
+        lettersToCheck[1][13] = 'Y';
+        lettersToCheck[1][14] = 'G';
+
+        Assert.assertArrayEquals(lettersToCheck, letters);
     }
 }
