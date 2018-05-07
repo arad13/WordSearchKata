@@ -189,4 +189,20 @@ public class WordSearchTests {
 
         assertEquals("FOO: (2,0),(1,0),(0,0)" + lineSeparator + "BAR: (2,1),(1,1),(0,1)", searcher.Search(words, letters));
     }
+
+    @Test
+    public void givenMultipleWordsSearchVerticallyInReverseReturnCoordinates(){
+        words.add("FOO");
+        words.add("BAR");
+
+        char[][] letters = new char[3][2];
+        letters[0][0] = 'O';
+        letters[0][1] = 'R';
+        letters[1][0] = 'O';
+        letters[1][1] = 'A';
+        letters[2][0] = 'F';
+        letters[2][1] = 'B';
+
+        assertEquals("FOO: (0,2),(0,1),(0,0)" + lineSeparator + "BAR: (1,2),(1,1),(1,0)", searcher.Search(words, letters));
+    }
 }
