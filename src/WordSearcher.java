@@ -2,6 +2,7 @@ import java.util.List;
 
 class WordSearcher {
     private String lineSeparator = System.getProperty("line.separator");
+    private enum FoundType{NOTFOUND, HORIZONTAL, VERTICAL, DIAGONALDESCENDING, DIAGONALASCENDING}
 
     String Search(List<String> words, char[][] letters){
         StringBuilder result = new StringBuilder();
@@ -12,15 +13,7 @@ class WordSearcher {
             for( int i = 0; i < letters.length; i++ ) {
                 for (int j = 0; j < letters[i].length; j++) {
                     if (letters[i][j] == word.charAt(0)) {
-                        coordinates.append(horizontalSearcher(word, letters[i], i, j, false));
-                        if( !coordinates.toString().equals("") )
-                            break;
-
-                        coordinates.append(verticalSearcher(word, letters, i, j, false));
-                        if( !coordinates.toString().equals("") )
-                            break;
-
-                        coordinates.append(diagonalDescendingSearcher(word, letters, i, j, false ));
+                        coordinates.append(searchAroundGivenCoordinate(word, letters, i, j, false));
                         if( !coordinates.toString().equals("") )
                             break;
                     }
@@ -38,81 +31,78 @@ class WordSearcher {
         return result.toString();
     }
 
-    private String horizontalSearcher(String word, char[] letterRow, int rowIndex, int columnIndex, boolean backwards){
-        int incrementer = 1;
-        boolean found = true;
+    private String searchAroundGivenCoordinate(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse) {
+        FoundType foundType = FoundType.NOTFOUND;
         StringBuilder result = new StringBuilder();
+
+        int searchTypeIndex = 0;
+        while (foundType == FoundType.NOTFOUND && searchTypeIndex < FoundType.values().length){
+            switch(searchTypeIndex){
+                case 0: foundType = horizontalHelper(word, letters[rowIndex], columnIndex, reverse);
+                        break;
+                case 1: foundType = verticalHelper(word, letters, rowIndex, columnIndex, reverse);
+                        break;
+                case 2: foundType = diagonalDescendingHelper(word, letters, rowIndex, columnIndex, reverse);
+                        break;
+            }
+            searchTypeIndex ++;
+        }
+
+        if (foundType != FoundType.NOTFOUND) {
+            for (int k = 0; k < word.length(); k++) {
+                result.append("(").append(rowIndex + (foundType==FoundType.VERTICAL || foundType==FoundType.DIAGONALDESCENDING?k:0)).append(",").append(columnIndex + (foundType==FoundType.HORIZONTAL || foundType==FoundType.DIAGONALDESCENDING?k:0)).append(")");
+
+                if (k != word.length() - 1)
+                    result.append(",");
+            }
+        }
+
+        return result.toString();
+    }
+
+    private FoundType horizontalHelper(String word, char[] letterRow, int columnIndex, boolean reverse){
+        int incrementer = 1;
 
         while (incrementer < word.length() && (columnIndex + incrementer) < letterRow.length) {
             if (letterRow[(columnIndex + incrementer)] != word.charAt(incrementer))
-                found = false;
+                return FoundType.NOTFOUND;
 
             incrementer++;
         }
         if( incrementer != word.length() )
-            found = false;
+            return FoundType.NOTFOUND;
 
-        if (found) {
-            for (int k = 0; k < word.length(); k++) {
-                result.append("(").append(rowIndex).append(",").append(columnIndex + k).append(")");
-
-                if (k != word.length() - 1)
-                    result.append(",");
-            }
-        }
-
-        return result.toString();
+        return FoundType.HORIZONTAL;
     }
 
-    private String verticalSearcher(String word, char[][] letters, int rowIndex, int columnIndex, boolean upwards){
+    private FoundType verticalHelper(String word, char[][] letters, int rowIndex, int columnIndex, boolean upwards){
         int incrementer = 1;
-        boolean found = true;
-        StringBuilder result = new StringBuilder();
 
         while (incrementer < word.length() && (rowIndex + incrementer) < letters.length) {
             if (letters[(rowIndex + incrementer)][columnIndex] != word.charAt(incrementer))
-                found = false;
+                return FoundType.NOTFOUND;
 
             incrementer++;
         }
         if( incrementer != word.length() )
-            found = false;
+            return FoundType.NOTFOUND;
 
-        if (found) {
-            for (int k = 0; k < word.length(); k++) {
-                result.append("(").append(rowIndex + k).append(",").append(columnIndex).append(")");
-
-                if (k != word.length() - 1)
-                    result.append(",");
-            }
-        }
-
-        return result.toString();
+        return FoundType.VERTICAL;
     }
 
-    private String diagonalDescendingSearcher(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse){
+    private FoundType diagonalDescendingHelper(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse){
         int incrementer = 1;
-        boolean found = true;
-        StringBuilder result = new StringBuilder();
 
         while (incrementer < word.length() && (rowIndex + incrementer) < letters.length && (columnIndex + incrementer) < letters[rowIndex].length) {
             if (letters[(rowIndex + incrementer)][columnIndex + incrementer] != word.charAt(incrementer))
-                found = false;
+                return FoundType.NOTFOUND;
 
             incrementer++;
         }
         if( incrementer != word.length() )
-            found = false;
+            return FoundType.NOTFOUND;
 
-        if (found) {
-            for (int k = 0; k < word.length(); k++) {
-                result.append("(").append(rowIndex + k).append(",").append(columnIndex+k).append(")");
 
-                if (k != word.length() - 1)
-                    result.append(",");
-            }
-        }
-
-        return result.toString();
+        return FoundType.DIAGONALDESCENDING;
     }
 }
