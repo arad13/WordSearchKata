@@ -19,6 +19,10 @@ class WordSearcher {
                         coordinates.append(verticalSearcher(word, letters, i, j, false));
                         if( !coordinates.toString().equals("") )
                             break;
+
+                        coordinates.append(diagonalDescendingSearcher(word, letters, i, j, false ));
+                        if( !coordinates.toString().equals("") )
+                            break;
                     }
                 }
 
@@ -77,6 +81,32 @@ class WordSearcher {
         if (found) {
             for (int k = 0; k < word.length(); k++) {
                 result.append("(").append(rowIndex + k).append(",").append(columnIndex).append(")");
+
+                if (k != word.length() - 1)
+                    result.append(",");
+            }
+        }
+
+        return result.toString();
+    }
+
+    private String diagonalDescendingSearcher(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse){
+        int incrementer = 1;
+        boolean found = true;
+        StringBuilder result = new StringBuilder();
+
+        while (incrementer < word.length() && (rowIndex + incrementer) < letters.length && (columnIndex + incrementer) < letters[rowIndex].length) {
+            if (letters[(rowIndex + incrementer)][columnIndex + incrementer] != word.charAt(incrementer))
+                found = false;
+
+            incrementer++;
+        }
+        if( incrementer != word.length() )
+            found = false;
+
+        if (found) {
+            for (int k = 0; k < word.length(); k++) {
+                result.append("(").append(rowIndex + k).append(",").append(columnIndex+k).append(")");
 
                 if (k != word.length() - 1)
                     result.append(",");
