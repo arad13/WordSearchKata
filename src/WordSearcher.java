@@ -79,8 +79,8 @@ class WordSearcher {
         if( reverse )
             incrementer = -1;
 
-        while (incrementer < word.length() && (columnIndex + incrementer) < letterRow.length && (columnIndex + incrementer) >= 0) {
-            if (letterRow[(columnIndex + incrementer)] != word.charAt(reverse?incrementer*-1:incrementer))
+        while (Math.abs(incrementer) < word.length() && (columnIndex + incrementer) < letterRow.length && (columnIndex + incrementer) >= 0) {
+            if (letterRow[(columnIndex + incrementer)] != word.charAt(Math.abs(incrementer)))
                 return FoundType.NOTFOUND;
 
             if( reverse )
@@ -102,8 +102,8 @@ class WordSearcher {
         if( reverse )
             incrementer = -1;
 
-        while (incrementer < word.length() && (rowIndex + incrementer) < letters.length && (rowIndex + incrementer) >= 0) {
-            if (letters[(rowIndex + incrementer)][columnIndex] != word.charAt(reverse?incrementer*-1:incrementer))
+        while (Math.abs(incrementer) < word.length() && (rowIndex + incrementer) < letters.length && (rowIndex + incrementer) >= 0) {
+            if (letters[(rowIndex + incrementer)][columnIndex] != word.charAt(Math.abs(incrementer)))
                 return FoundType.NOTFOUND;
 
             if( reverse )

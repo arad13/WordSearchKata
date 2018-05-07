@@ -307,4 +307,22 @@ public class WordSearchTests {
 
         Assert.assertArrayEquals(lettersToCheck, letters);
     }
+
+    @Test
+    public void givenSampleInputFileReadInFileAndReturnCoordinates(){
+        String directory = "D:\\Andrew\\Documents\\inputTestFile2.txt";
+
+        InputParser parser = new InputParser();
+        parser.parse(directory);
+        words = parser.words;
+        char[][] letters = parser.letters;
+
+        assertEquals("BONES: (0,6),(0,7),(0,8),(0,9),(0,10)" + lineSeparator +
+                "KHAN: (5,9),(5,8),(5,7),(5,6)" + lineSeparator +
+                "KIRK: (4,7),(3,7),(2,7),(1,7)" + lineSeparator +
+                "SCOTTY: (0,5),(1,5),(2,5),(3,5),(4,5),(5,5)" + lineSeparator +
+                "SPOCK: (2,1),(3,2),(4,3),(5,4),(6,5)" + lineSeparator +
+                "SULU: (3,3),(2,2),(1,1),(0,0)" + lineSeparator +
+                "UHURA: (4,0),(3,1),(2,2),(1,3),(0,4)", searcher.Search(words, letters));
+    }
 }
