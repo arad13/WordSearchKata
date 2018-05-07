@@ -30,4 +30,16 @@ public class WordSearchTests {
 
         assertEquals("BB: (0,0),(0,1)", searcher.Search(words, letters));
     }
+
+    @Test
+    public void givenASingleWordAndArrayContainingAFirstLetterNotInWordReturnCoordinates(){
+        words.add("AA");
+
+        char[][] letters = new char[1][3];
+        letters[0][0] = 'C';
+        letters[0][1] = 'A';
+        letters[0][2] = 'A';
+
+        assertEquals("AA: (0,1),(0,2)", searcher.Search(words, letters));
+    }
 }
