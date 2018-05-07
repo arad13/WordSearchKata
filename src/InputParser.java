@@ -7,9 +7,8 @@ class InputParser {
     List<String> words;
     char[][] letters;
 
-    void parse(String fileLocation) {
+    String parse(String fileLocation) {
         File file = new File(fileLocation);
-        String temp = file.getAbsolutePath();
         FileInputStream fis = null;
         BufferedReader reader;
 
@@ -43,7 +42,7 @@ class InputParser {
             }
         }
         catch(IOException ex){
-            ex.printStackTrace();
+            return "Invalid File or File Not Found.";
         }
         finally {
             try {
@@ -53,5 +52,7 @@ class InputParser {
                 ex.printStackTrace();
             }
         }
+
+        return "";
     }
 }

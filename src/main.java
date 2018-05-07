@@ -1,13 +1,24 @@
 public class main {
     public static void main(String[] args){
+        InputParser inputParser = new InputParser();
 
         System.out.println("Welcome to the word search program!");
-        System.out.print("Please enter a file path for a word search puzzle input:");
+        String result = "Waiting";
+        while(!result.equals("") && !result.equals("E")) {
+            System.out.print("Please enter a file path for a word search puzzle input or enter E to exit: ");
 
-        String fileInput = System.console().readLine();
+            String fileInput = System.console().readLine();
 
-        InputParser inputParser = new InputParser();
-        inputParser.parse(fileInput);
+            if( fileInput.equals("E") )
+                return;
+
+            inputParser = new InputParser();
+            result = inputParser.parse(fileInput);
+
+
+            if(!result.equals(""))
+                System.out.println(result);
+        }
 
         WordSearcher wordSearcher = new WordSearcher();
         String results = wordSearcher.Search(inputParser.words, inputParser.letters);
