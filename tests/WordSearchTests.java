@@ -8,6 +8,7 @@ import static junit.framework.TestCase.assertEquals;
 public class WordSearchTests {
     private WordSearcher searcher = new WordSearcher();
     private List<String> words = new ArrayList<>();
+    private String lineSeparator = System.getProperty("line.separator");
 
     @Test
     public void givenASingleWordListAndArrayContainingOnlyWordLettersHorizontallyReturnCoordinates() {
@@ -53,5 +54,21 @@ public class WordSearchTests {
         letters[0][2] = 'A';
 
         assertEquals("AAA: (0,0),(0,1),(0,2)", searcher.Search(words, letters));
+    }
+
+    @Test
+    public void givenTwoWordsHorizontallyReturnCoordinates(){
+        words.add("AAA");
+        words.add("BBB");
+
+        char[][] letters = new char[1][6];
+        letters[0][0] = 'A';
+        letters[0][1] = 'A';
+        letters[0][2] = 'A';
+        letters[0][3] = 'B';
+        letters[0][4] = 'B';
+        letters[0][5] = 'B';
+
+        assertEquals("AAA: (0,0),(0,1),(0,2)" + lineSeparator + "BBB: (0,3),(0,4),(0,5)", searcher.Search(words, letters));
     }
 }
