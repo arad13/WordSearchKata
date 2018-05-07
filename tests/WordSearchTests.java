@@ -10,7 +10,7 @@ public class WordSearchTests {
     private List<String> words = new ArrayList<>();
 
     @Test
-    public void givenSingleWordListAndArrayContainingOnlyWordLettersHorizontallyReturnCoordinates() {
+    public void givenASingleWordListAndArrayContainingOnlyWordLettersHorizontallyReturnCoordinates() {
         words.add("AA");
 
         char[][] letters = new char[1][2];
@@ -41,5 +41,17 @@ public class WordSearchTests {
         letters[0][2] = 'A';
 
         assertEquals("AA: (0,1),(0,2)", searcher.Search(words, letters));
+    }
+
+    @Test
+    public void givenASingleWordOfLengthGreaterThanTwoContainingOnlyWordLettersHorizontallyReturnCoordinates(){
+        words.add("AAA");
+
+        char[][] letters = new char[1][3];
+        letters[0][0] = 'A';
+        letters[0][1] = 'A';
+        letters[0][2] = 'A';
+
+        assertEquals("AAA: (0,0),(0,1),(0,2)", searcher.Search(words, letters));
     }
 }
