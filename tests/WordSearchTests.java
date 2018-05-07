@@ -85,6 +85,17 @@ public class WordSearchTests {
         letters[1][2] = 'A';
 
         assertEquals("AAA: (1,0),(1,1),(1,2)", searcher.Search(words, letters));
+    }
 
+    @Test
+    public void givenASingleWordSearchVerticallyLettersInFirstColumnReturnCoordinates(){
+        words.add("AAA");
+
+        char[][] letters = new char[3][1];
+        letters[0][0] = 'A';
+        letters[1][0] = 'A';
+        letters[2][0] = 'A';
+
+        assertEquals("AAA: (0,0),(1,0),(2,0)", searcher.Search(words, letters));
     }
 }
