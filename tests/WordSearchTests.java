@@ -173,4 +173,20 @@ public class WordSearchTests {
 
         assertEquals("AAA: (2,0),(1,1),(0,2)" + lineSeparator + "BD: (1,0),(0,1)", searcher.Search(words, letters));
     }
+
+    @Test
+    public void givenMultipleWordsSearchHorizontallyInReverseReturnCoordinates(){
+        words.add("FOO");
+        words.add("BAR");
+
+        char[][] letters = new char[2][3];
+        letters[0][0] = 'O';
+        letters[0][1] = 'O';
+        letters[0][2] = 'F';
+        letters[1][0] = 'R';
+        letters[1][1] = 'A';
+        letters[1][2] = 'B';
+
+        assertEquals("FOO: (0,2),(0,1),(0,0)" + lineSeparator + "BAR: (1,2),(1,1),(1,0)", searcher.Search(words, letters));
+    }
 }
