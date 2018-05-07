@@ -44,14 +44,19 @@ class WordSearcher {
                         break;
                 case 2: foundType = diagonalDescendingHelper(word, letters, rowIndex, columnIndex, reverse);
                         break;
-
+                case 3: foundType = diagonalAscendingHelper(word, letters, rowIndex, columnIndex, reverse);
+                        break;
             }
             searchTypeIndex ++;
         }
 
         if (foundType != FoundType.NOTFOUND) {
             for (int k = 0; k < word.length(); k++) {
-                result.append("(").append(rowIndex + (foundType==FoundType.VERTICAL || foundType==FoundType.DIAGONALDESCENDING?k:0)).append(",").append(columnIndex + (foundType==FoundType.HORIZONTAL || foundType==FoundType.DIAGONALDESCENDING?k:0)).append(")");
+                result.append("(");
+                result.append(rowIndex + (foundType==FoundType.VERTICAL || foundType==FoundType.DIAGONALDESCENDING?k:0) + (foundType==FoundType.DIAGONALASCENDING?k*-1:0));
+                result.append(",");
+                result.append(columnIndex + (foundType==FoundType.HORIZONTAL || foundType==FoundType.DIAGONALDESCENDING || foundType==FoundType.DIAGONALASCENDING?k:0));
+                result.append(")");
 
                 if (k != word.length() - 1)
                     result.append(",");
@@ -103,7 +108,21 @@ class WordSearcher {
         if( incrementer != word.length() )
             return FoundType.NOTFOUND;
 
-
         return FoundType.DIAGONALDESCENDING;
+    }
+
+    private FoundType diagonalAscendingHelper(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse){
+        int incrementer = 1;
+
+        while (incrementer < word.length() && (rowIndex - incrementer) >= 0 && (columnIndex + incrementer) < letters[rowIndex].length) {
+            if (letters[(rowIndex - incrementer)][columnIndex + incrementer] != word.charAt(incrementer))
+                return FoundType.NOTFOUND;
+
+            incrementer++;
+        }
+        if( incrementer != word.length() )
+            return FoundType.NOTFOUND;
+
+        return FoundType.DIAGONALASCENDING;
     }
 }
