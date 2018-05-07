@@ -157,21 +157,21 @@ public class WordSearchTests {
 
     @Test
     public void givenMultipleWordsSearchDiagonallyAscendingReturnCoordinates(){
-        words.add("AAA");
+        words.add("FOO");
         words.add("BD");
 
         char[][] letters = new char[3][3];
         letters[0][0] = 'C';
         letters[0][1] = 'D';
-        letters[0][2] = 'A';
+        letters[0][2] = 'O';
         letters[1][0] = 'B';
-        letters[1][1] = 'A';
+        letters[1][1] = 'O';
         letters[1][2] = 'C';
-        letters[2][0] = 'A';
+        letters[2][0] = 'F';
         letters[2][1] = 'E';
         letters[2][2] = 'A';
 
-        assertEquals("AAA: (0,2),(1,1),(2,0)" + lineSeparator + "BD: (0,1),(1,0)", searcher.Search(words, letters));
+        assertEquals("FOO: (0,2),(1,1),(2,0)" + lineSeparator + "BD: (0,1),(1,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -204,5 +204,24 @@ public class WordSearchTests {
         letters[2][1] = 'B';
 
         assertEquals("FOO: (0,2),(0,1),(0,0)" + lineSeparator + "BAR: (1,2),(1,1),(1,0)", searcher.Search(words, letters));
+    }
+
+    @Test
+    public void givenMultipleWordsSearchDiagonallyDescendingInReverseReturnCoordinates(){
+        words.add("FOO");
+        words.add("BD");
+
+        char[][] letters = new char[3][3];
+        letters[0][0] = 'C';
+        letters[0][1] = 'B';
+        letters[0][2] = 'F';
+        letters[1][0] = 'D';
+        letters[1][1] = 'O';
+        letters[1][2] = 'C';
+        letters[2][0] = 'O';
+        letters[2][1] = 'D';
+        letters[2][2] = 'A';
+
+        assertEquals("FOO: (2,0),(1,1),(0,2)" + lineSeparator + "BD: (1,0),(0,1)", searcher.Search(words, letters));
     }
 }
