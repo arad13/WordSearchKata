@@ -1,8 +1,10 @@
 import java.util.List;
 
-public class WordSearcher {
+class WordSearcher {
 
-    public String Search(List<String> words, char[][] letters){
-        return "AA: (0,0),(0,1)";
+    String Search(List<String> words, char[][] letters){
+        String word = words.get(0);
+
+        return word + ": (0,0),(0,1)";
     }
 }
