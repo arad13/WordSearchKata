@@ -98,4 +98,23 @@ public class WordSearchTests {
 
         assertEquals("AAA: (0,0),(1,0),(2,0)", searcher.Search(words, letters));
     }
+
+    @Test
+    public void givenMultipleWordsSearchVerticallyInMultipleColumnsReturnCoordinates(){
+        words.add("AAA");
+        words.add("BBB");
+
+        char[][] letters = new char[3][3];
+        letters[0][0] = 'C';
+        letters[1][0] = 'C';
+        letters[2][0] = 'C';
+        letters[0][1] = 'A';
+        letters[1][1] = 'A';
+        letters[2][1] = 'A';
+        letters[0][2] = 'B';
+        letters[1][2] = 'B';
+        letters[2][2] = 'B';
+
+        assertEquals("AAA: (0,1),(1,1),(2,1)" + lineSeparator + "BBB: (0,2),(1,2),(2,2)", searcher.Search(words, letters));
+    }
 }
