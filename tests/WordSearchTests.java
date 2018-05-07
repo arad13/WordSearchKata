@@ -243,4 +243,24 @@ public class WordSearchTests {
 
         assertEquals("FOO: (2,2),(1,1),(0,0)" + lineSeparator + "BD: (2,1),(1,0)", searcher.Search(words, letters));
     }
+
+    @Test
+    public void readInFileAndReturnWordsList(){
+        String directory = "D:\\Andrew\\Documents\\inputTestFile.txt";
+
+        InputParser parser = new InputParser();
+        parser.parse(directory);
+        words = parser.words;
+
+        ArrayList<String> resultList = new ArrayList<>();
+        resultList.add("BONES");
+        resultList.add("KHAN");
+        resultList.add("KIRK");
+        resultList.add("SCOTTY");
+        resultList.add("SPOCK");
+        resultList.add("SULU");
+        resultList.add("UHURA");
+
+        assertEquals(resultList, words);
+    }
 }

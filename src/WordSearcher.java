@@ -149,30 +149,4 @@ class WordSearcher {
         else
             return FoundType.NOTFOUND;
     }
-
-    /*private FoundType diagonalAscendingHelper(String word, char[][] letters, int rowIndex, int columnIndex, boolean reverse){
-        int rowIncrementer = 1;
-        if( reverse )
-            rowIncrementer = -1;
-        int columnIncrementer = 1;
-
-        while (rowIncrementer < word.length() && columnIncrementer < word.length() && (rowIndex + rowIncrementer) < letters.length
-                && (columnIndex + columnIncrementer) < letters[rowIndex].length && (columnIndex + columnIncrementer) >= 0) {
-            if (letters[(rowIndex + rowIncrementer)][columnIndex + columnIncrementer] != word.charAt(rowIncrementer))
-                return FoundType.NOTFOUND;
-
-            rowIncrementer++;
-            if( reverse )
-                columnIncrementer --;
-            else
-                columnIncrementer++;
-        }
-        if( rowIncrementer != word.length() )
-            return FoundType.NOTFOUND;
-
-        if( !reverse )
-            return FoundType.DIAGONALDESCENDING;
-        else
-            return FoundType.DIAGONALDESCENDINGREVERSE;
-    }*/
 }
