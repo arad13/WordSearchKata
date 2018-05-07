@@ -55,9 +55,9 @@ class WordSearcher {
         if (foundType != FoundType.NOTFOUND) {
             for (int k = 0; k < word.length(); k++) {
                 result.append("(");
-                result.append(rowIndex + (foundType==FoundType.VERTICAL || foundType==FoundType.DIAGONALDESCENDING?k:0) + (foundType==FoundType.DIAGONALASCENDING?k*-1:0));
-                result.append(",");
                 result.append(columnIndex + (foundType==FoundType.HORIZONTAL || foundType==FoundType.DIAGONALDESCENDING || foundType==FoundType.DIAGONALASCENDING?k:0) + (foundType==FoundType.HORIZONTALREVERSE?k*-1:0));
+                result.append(",");
+                result.append(rowIndex + (foundType==FoundType.VERTICAL || foundType==FoundType.DIAGONALDESCENDING?k:0) + (foundType==FoundType.DIAGONALASCENDING?k*-1:0));
                 result.append(")");
 
                 if (k != word.length() - 1)

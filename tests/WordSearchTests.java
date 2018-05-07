@@ -18,7 +18,7 @@ public class WordSearchTests {
         letters[0][0] = 'A';
         letters[0][1] = 'A';
 
-        assertEquals("AA: (0,0),(0,1)", searcher.Search(words, letters));
+        assertEquals("AA: (0,0),(1,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -29,7 +29,7 @@ public class WordSearchTests {
         letters[0][0] = 'B';
         letters[0][1] = 'B';
 
-        assertEquals("BB: (0,0),(0,1)", searcher.Search(words, letters));
+        assertEquals("BB: (0,0),(1,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -41,7 +41,7 @@ public class WordSearchTests {
         letters[0][1] = 'A';
         letters[0][2] = 'A';
 
-        assertEquals("AA: (0,1),(0,2)", searcher.Search(words, letters));
+        assertEquals("AA: (1,0),(2,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class WordSearchTests {
         letters[0][1] = 'A';
         letters[0][2] = 'A';
 
-        assertEquals("AAA: (0,0),(0,1),(0,2)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,0),(1,0),(2,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class WordSearchTests {
         letters[0][4] = 'B';
         letters[0][5] = 'B';
 
-        assertEquals("AAA: (0,0),(0,1),(0,2)" + lineSeparator + "BBB: (0,3),(0,4),(0,5)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,0),(1,0),(2,0)" + lineSeparator + "BBB: (3,0),(4,0),(5,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -84,7 +84,7 @@ public class WordSearchTests {
         letters[1][1] = 'A';
         letters[1][2] = 'A';
 
-        assertEquals("AAA: (1,0),(1,1),(1,2)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,1),(1,1),(2,1)", searcher.Search(words, letters));
     }
 
     @Test
@@ -96,7 +96,7 @@ public class WordSearchTests {
         letters[1][0] = 'A';
         letters[2][0] = 'A';
 
-        assertEquals("AAA: (0,0),(1,0),(2,0)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,0),(0,1),(0,2)", searcher.Search(words, letters));
     }
 
     @Test
@@ -115,7 +115,7 @@ public class WordSearchTests {
         letters[1][2] = 'B';
         letters[2][2] = 'B';
 
-        assertEquals("AAA: (0,1),(1,1),(2,1)" + lineSeparator + "BBB: (0,2),(1,2),(2,2)", searcher.Search(words, letters));
+        assertEquals("AAA: (1,0),(1,1),(1,2)" + lineSeparator + "BBB: (2,0),(2,1),(2,2)", searcher.Search(words, letters));
     }
 
     @Test
@@ -152,7 +152,7 @@ public class WordSearchTests {
         letters[2][1] = 'D';
         letters[2][2] = 'A';
 
-        assertEquals("AAA: (0,0),(1,1),(2,2)" + lineSeparator + "BD: (1,0),(2,1)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,0),(1,1),(2,2)" + lineSeparator + "BD: (0,1),(1,2)", searcher.Search(words, letters));
     }
 
     @Test
@@ -171,7 +171,7 @@ public class WordSearchTests {
         letters[2][1] = 'E';
         letters[2][2] = 'A';
 
-        assertEquals("AAA: (2,0),(1,1),(0,2)" + lineSeparator + "BD: (1,0),(0,1)", searcher.Search(words, letters));
+        assertEquals("AAA: (0,2),(1,1),(2,0)" + lineSeparator + "BD: (0,1),(1,0)", searcher.Search(words, letters));
     }
 
     @Test
@@ -187,6 +187,6 @@ public class WordSearchTests {
         letters[1][1] = 'A';
         letters[1][2] = 'B';
 
-        assertEquals("FOO: (0,2),(0,1),(0,0)" + lineSeparator + "BAR: (1,2),(1,1),(1,0)", searcher.Search(words, letters));
+        assertEquals("FOO: (2,0),(1,0),(0,0)" + lineSeparator + "BAR: (2,1),(1,1),(0,1)", searcher.Search(words, letters));
     }
 }
