@@ -9,6 +9,7 @@ class InputParser {
 
     void parse(String fileLocation) {
         File file = new File(fileLocation);
+        String temp = file.getAbsolutePath();
         FileInputStream fis = null;
         BufferedReader reader;
 

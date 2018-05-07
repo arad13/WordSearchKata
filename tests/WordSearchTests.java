@@ -247,7 +247,7 @@ public class WordSearchTests {
 
     @Test
     public void readInFileAndReturnWordsList(){
-        String directory = "D:\\Andrew\\Documents\\inputTestFile.txt";
+        String directory = ".\\testFiles\\inputTestFile.txt";
 
         InputParser parser = new InputParser();
         parser.parse(directory);
@@ -267,7 +267,7 @@ public class WordSearchTests {
 
     @Test
     public void readInFileAndReturnLettersArray(){
-        String directory = "D:\\Andrew\\Documents\\inputTestFile.txt";
+        String directory = ".\\testFiles\\inputTestFile.txt";
 
         InputParser parser = new InputParser();
         parser.parse(directory);
@@ -310,7 +310,7 @@ public class WordSearchTests {
 
     @Test
     public void givenSampleInputFileReadInFileAndReturnCoordinates(){
-        String directory = "D:\\Andrew\\Documents\\inputTestFile2.txt";
+        String directory = ".\\testFiles\\inputTestFile2.txt";
 
         InputParser parser = new InputParser();
         parser.parse(directory);
@@ -328,7 +328,7 @@ public class WordSearchTests {
 
     @Test
     public void givenLargeGridTestFileReadInFileAndReturnCoordinates(){
-        String directory = "D:\\Andrew\\Documents\\largeInputTestFile.txt";
+        String directory = ".\\testFiles\\largeInputTestFile.txt";
 
         InputParser parser = new InputParser();
         parser.parse(directory);
