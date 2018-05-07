@@ -44,6 +44,7 @@ class WordSearcher {
                         break;
                 case 2: foundType = diagonalDescendingHelper(word, letters, rowIndex, columnIndex, reverse);
                         break;
+
             }
             searchTypeIndex ++;
         }
