@@ -9,25 +9,27 @@ class WordSearcher {
         for (String word : words) {
             StringBuilder coordinates = new StringBuilder();
 
-            for (int j = 0; j < letters[0].length; j++) {
-                if (letters[0][j] == word.charAt(0)) {
-                    int incrementer = 1;
-                    boolean found = true;
-                    while (incrementer < word.length() && (j + incrementer) < letters[0].length) {
-                        if (letters[0][(j + incrementer)] != word.charAt(incrementer))
-                            found = false;
+            for( int i = 0; i < letters.length; i++ ) {
+                for (int j = 0; j < letters[i].length; j++) {
+                    if (letters[i][j] == word.charAt(0)) {
+                        int incrementer = 1;
+                        boolean found = true;
+                        while (incrementer < word.length() && (j + incrementer) < letters[i].length) {
+                            if (letters[i][(j + incrementer)] != word.charAt(incrementer))
+                                found = false;
 
-                        incrementer++;
-                    }
-
-                    if (found) {
-                        for (int k = 0; k < word.length(); k++) {
-                            coordinates.append("(0,").append(j + k).append(")");
-
-                            if (k != word.length() - 1)
-                                coordinates.append(",");
+                            incrementer++;
                         }
-                        break;
+
+                        if (found) {
+                            for (int k = 0; k < word.length(); k++) {
+                                coordinates.append("(").append(i).append(",").append(j + k).append(")");
+
+                                if (k != word.length() - 1)
+                                    coordinates.append(",");
+                            }
+                            break;
+                        }
                     }
                 }
             }
