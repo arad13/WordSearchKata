@@ -6,10 +6,11 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 public class WordSearchTests {
+    private WordSearcher searcher = new WordSearcher();
+    private List<String> words = new ArrayList<>();
+
     @Test
     public void givenSingleWordListAndArrayContainingOnlyWordLettersHorizontallyReturnCoordinates() {
-        WordSearcher searcher = new WordSearcher();
-        List<String> words = new ArrayList<>();
         words.add("AA");
 
         char[][] letters = new char[1][2];
@@ -21,8 +22,6 @@ public class WordSearchTests {
 
     @Test
     public void givenADifferentSingleWordListAndArrayContainingOnlyWordLettersHorizontallyReturnCoordinates() {
-        WordSearcher searcher = new WordSearcher();
-        List<String> words = new ArrayList<>();
         words.add("BB");
 
         char[][] letters = new char[1][2];
